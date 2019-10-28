@@ -19,16 +19,25 @@ $("#submitBtn").on("click", function (event) {
 
     event.preventDefault();
 
-    // Gathering the users input values.
-    var trainName = $("#train-name").val().trim();
-    var trainDestination = $("#destination").val().trim();
-    var trainFirstTime = $("#first-train-time").val().trim();
-    var trainFreq = $("#train-freq").val().trim();
 
-    console.log(name);
-    console.log(destination);
-    console.log(trainFirstTime);
-    console.log(trainFreq);
+
+    if ($("#train-name").val().trim(), $("#destination").val().trim(), $("#first-train-time").val().trim(), $("#train-freq").val().trim() === "") {
+        confirm("All input fields are required!");
+    }
+    else {
+        // Gathering the users input values.
+        var trainName = $("#train-name").val().trim();
+        var trainDestination = $("#destination").val().trim();
+        var trainFirstTime = $("#first-train-time").val().trim();
+        var trainFreq = $("#train-freq").val().trim();
+
+        console.log(name);
+        console.log(destination);
+        console.log(trainFirstTime);
+        console.log(trainFreq);
+
+    }
+
 
     // Pushing the info gathered from the user to Firebase.
     database.ref().push({
@@ -36,6 +45,7 @@ $("#submitBtn").on("click", function (event) {
         destination: trainDestination,
         firstTime: trainFirstTime,
         trainFreq: trainFreq,
+
 
     })
     // Clearing the input fields after a submission.
@@ -79,7 +89,7 @@ database.ref().on("child_added", function (snapshot) {
     let nextArrive = $("<td>").text(newTrainTimeForm);
 
 
-    
+
     tRow.append(train);
     tRow.append(trainDest);
     tRow.append(freq);
